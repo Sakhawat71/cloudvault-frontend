@@ -129,7 +129,7 @@ export default function HomePage() {
                         <span className="font-mono text-[10px] font-bold tracking-[2px] text-emerald-400 uppercase block mb-2">Network Topology</span>
                         <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-5">High-Velocity Cluster Pipeline</h2>
                         <p className="text-sm text-white/45 leading-relaxed mb-6">
-                            VaultX separates interface layout executions from memory payload layers. When files populate into your drag-and-drop staging buffers, they stream directly to edge servers bypassing proxy bottlenecks entirely.
+                            CloudVault separates interface layout executions from memory payload layers. When files populate into your drag-and-drop staging buffers, they stream directly to edge servers bypassing proxy bottlenecks entirely.
                         </p>
 
                         <div className="space-y-4 font-mono text-xs">
@@ -223,7 +223,7 @@ export default function HomePage() {
                             <div className="w-6 h-6 bg-gradient-to-br from-[#6366f1] to-[#10b981] rounded flex items-center justify-center">
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M20 6h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM9 4h6v2H9V4zm11 15H4V8h16v11z" /></svg>
                             </div>
-                            <span className="text-sm font-bold text-white tracking-tight">cloudVault Storage</span>
+                            <span className="text-sm font-bold text-white tracking-tight">CloudVault Storage</span>
                         </div>
                         <p className="text-[11px] text-white/30 font-mono leading-relaxed">
                             Securing raw computing data matrices across highly-available cloud infrastructures safely.
@@ -256,7 +256,7 @@ export default function HomePage() {
 
                 {/* Copyright Base Strip */}
                 <div className="border-t border-white/[0.04] py-4 text-center font-mono text-[10px] text-white/20">
-                    &copy; {new Date().getFullYear()} VaultX System Inc. All operational rights reserved.
+                    &copy; {new Date().getFullYear()} CloudVault System Inc. All operational rights reserved.
                 </div>
             </footer>
         </div>

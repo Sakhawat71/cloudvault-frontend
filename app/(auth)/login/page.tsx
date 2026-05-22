@@ -185,7 +185,7 @@ export default function LoginPage() {
                             </svg>
                         </div>
                         <span className="text-xl font-extrabold text-white tracking-[-0.5px]">
-                            Vault<span className="text-indigo-400">X</span>
+                            Cloud<span className="text-indigo-400">Vault</span>
                         </span>
                     </div>
 

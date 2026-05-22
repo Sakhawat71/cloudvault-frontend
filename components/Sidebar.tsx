@@ -69,7 +69,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             >
                 {/* Logo */}
                 <Link
-                    href="/dashboard"
+                    href="/"
                     className="flex items-center gap-2.5 px-6 py-5 border-b border-white/[0.06] no-underline"
                 >
                     <div className="w-8 h-8 bg-gradient-to-br from-[#6366f1] to-[#10b981] rounded-lg flex items-center justify-center shadow-[0_4px_12px_rgba(99,102,241,0.3)]">
@@ -78,7 +78,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                         </svg>
                     </div>
                     <span className="text-[17px] font-black text-white tracking-tight">
-                        Vault<span className="text-[#818cf8]">X</span>
+                        Cloud<span className="text-[#818cf8]">Vault</span>
                     </span>
                 </Link>
 

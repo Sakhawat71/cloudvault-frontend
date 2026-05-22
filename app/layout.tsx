@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'CloudVault — Secure File Storage',
+  title: 'CloudVault - Secure File Storage',
   description: 'Secure cloud file upload and sharing powered by AWS S3',
 }
 
