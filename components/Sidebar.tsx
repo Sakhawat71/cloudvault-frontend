@@ -1,7 +1,9 @@
 "use client";
 
+import { useAuth } from "@/providers/AuthProvider";
+import { logoutUser } from "@/services/auth";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface SidebarProps {
     open: boolean;
@@ -49,9 +51,17 @@ const NAV_ITEMS = [
 
 export default function Sidebar({ open, onClose }: SidebarProps) {
     const pathname = usePathname();
-
+    const { user, setUser } = useAuth();
+    const route = useRouter();
     const isActive = (href: string) =>
         href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href);
+
+    const handleLogout = async () => {
+        await logoutUser();
+        setUser(null);
+        route.push("/");
+    };
+
 
     return (
         <>
@@ -92,8 +102,8 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                             key={item.href}
                             href={item.href}
                             className={`flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] font-semibold border transition-all no-underline ${isActive(item.href)
-                                    ? "bg-indigo-500/10 text-[#818cf8] border-indigo-500/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-                                    : "text-white/40 border-transparent hover:bg-white/[0.03] hover:text-white/80"
+                                ? "bg-indigo-500/10 text-[#818cf8] border-indigo-500/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+                                : "text-white/40 border-transparent hover:bg-white/[0.03] hover:text-white/80"
                                 }`}
                         >
                             {item.icon}
@@ -102,16 +112,6 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                     ))}
                 </nav>
 
-                {/* Storage meter */}
-                <div className="mx-4 mb-4 p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                    <div className="flex items-center justify-between mb-2">
-                        <span className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-wider">Storage</span>
-                        <span className="text-[10px] font-mono text-white/40">1.8 / 5 GB</span>
-                    </div>
-                    <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-                        <div className="h-full w-[36%] bg-gradient-to-r from-[#6366f1] to-[#10b981] rounded-full" />
-                    </div>
-                </div>
 
                 {/* User */}
                 <div className="px-4 pb-5 border-t border-white/[0.06] pt-4 flex items-center gap-3">
@@ -119,15 +119,14 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
                         JD
                     </div>
                     <div className="flex-1 min-w-0">
-                        <p className="text-[12px] font-bold text-white truncate">John Doe</p>
-                        <p className="text-[10px] text-white/30 font-mono truncate">john@example.com</p>
+                        <p className="text-[12px] font-bold text-white truncate">{user?.name}</p>
+                        <p className="text-[10px] text-white/30 font-mono truncate">{user?.email}</p>
                     </div>
                     <button
                         className="text-white/25 hover:text-red-400 transition-colors bg-transparent border-0 cursor-pointer"
                         title="Logout"
                         onClick={async () => {
-                            await fetch("/api/auth/logout", { method: "POST" });
-                            window.location.href = "/login";
+                            await handleLogout();
                         }}
                     >
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">

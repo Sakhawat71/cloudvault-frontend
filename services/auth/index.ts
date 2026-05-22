@@ -57,14 +57,6 @@ export const getCurrentUser = async () => {
 };
 
 
-// export const logoutUser = async () => {
-//     try {
-//         (await cookies()).delete('token');
-//     } catch (err: any) {
-//         return Error(err);
-//     }
-// };
-
 export const logoutUser = async () => {
     try {
         (await cookies()).delete("token");

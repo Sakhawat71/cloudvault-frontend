@@ -1,3 +1,71 @@
+// "use client";
+
+// import { getMe } from "@/services/auth";
+// import { createContext, useContext, useEffect, useState } from "react";
+
+// type User = {
+//     id: string;
+//     name: string;
+//     email: string;
+// };
+
+// type AuthContextType = {
+//     user: User | null;
+//     loading: boolean;
+//     setUser: React.Dispatch<React.SetStateAction<User | null>>;
+// };
+
+// const AuthContext = createContext<AuthContextType | null>(null);
+
+// export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+//     const [user, setUser] = useState<User | null>(null);
+//     const [loading, setLoading] = useState(true);
+
+//     useEffect(() => {
+//         let mounted = true;
+
+//         const loadUser = async () => {
+//             try {
+//                 const res = await getMe();
+
+//                 if (mounted && res?.success) {
+//                     setUser(res.user);
+//                 } else if (mounted) {
+//                     setUser(null);
+//                 }
+//             } finally {
+//                 if (mounted) setLoading(false);
+//             }
+//         };
+
+//         loadUser();
+
+//         return () => {
+//             mounted = false;
+//         };
+//     }, []);
+
+//     return (
+//         <AuthContext.Provider value={{ user, loading, setUser }}>
+//             {children}
+//         </AuthContext.Provider>
+//     );
+// };
+
+// export const useAuth = () => {
+//     const context = useContext(AuthContext);
+
+//     if (!context) {
+//         throw new Error("useAuth must be used inside AuthProvider");
+//     }
+
+//     return context;
+// };
+
+
+
+
+
 "use client";
 
 import { getMe } from "@/services/auth";
@@ -35,7 +103,6 @@ export const AuthProvider = ({
         const loadUser = async () => {
             try {
                 const res = await getMe();
-                // console.log(res);
                 if (res?.success) {
                     setUser(res.user);
                 }
