@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+// import { getCurrentUser } from "@/services/auth";
 
 export default function HomePage() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+    // const user =  getCurrentUser()
+    // console.log(user);
 
     return (
         <div className="min-h-screen bg-[#0a0a0f] text-white font-sans antialiased selection:bg-indigo-500/30 selection:text-indigo-200">

@@ -6,7 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 // import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { registerUser } from "@/services/auth";
+import { loginUser, registerUser } from "@/services/auth";
 
 
 
@@ -69,19 +69,19 @@ export default function RegisterPage() {
                 id: toastId,
             });
 
-            // const result = await signIn("credentials", {
-            //     email: data.email,
-            //     password: data.password,
-            //     redirect: false,
-            // });
+            const result = await loginUser({
+                email: data.email,
+                password: data.password,
+            });
 
-            // if (result?.error) {
-            //     throw new Error("Invalid credentials");
-            // }
-
-            toast.success("Login successful 🎉");
-
-            router.push("/");
+            if (result.success === false) {
+                // throw new Error("Invalid credentials");
+                toast.error(result.message || "Login failed");
+            }
+            if (result.success) {
+                toast.success("Login successful 🎉");
+            }
+            router.push("/dashboard");
         } catch (error) {
             console.error(error);
 
@@ -235,11 +235,10 @@ export default function RegisterPage() {
                                     {[1, 2, 3, 4].map((i) => (
                                         <div
                                             key={i}
-                                            className={`h-[3px] flex-1 rounded-full ${
-                                                i <= strength
+                                            className={`h-[3px] flex-1 rounded-full ${i <= strength
                                                     ? strengthColor
                                                     : "bg-white/10"
-                                            }`}
+                                                }`}
                                         />
                                     ))}
                                 </div>

@@ -15,11 +15,6 @@ export const registerUser = async (userData: FieldValues) => {
             body: JSON.stringify(userData),
         });
         const result = await res.json();
-        console.log(result);
-        // if (result.success) {
-        //     (await cookies()).set("accessToken", result.data.token);
-        // }
-
         return result;
     } catch (error: any) {
         return Error(error);
@@ -29,7 +24,7 @@ export const registerUser = async (userData: FieldValues) => {
 
 export const loginUser = async (userData: FieldValues) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/api/auth/login`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -40,7 +35,7 @@ export const loginUser = async (userData: FieldValues) => {
         const result = await res.json();
 
         if (result.success) {
-            (await cookies()).set("accessToken", result.data.token);
+            (await cookies()).set("token", result.token);
         }
 
         return result;
@@ -50,7 +45,7 @@ export const loginUser = async (userData: FieldValues) => {
 };
 
 export const getCurrentUser = async () => {
-    const accessToken = (await cookies()).get("accessToken")?.value;
+    const accessToken = (await cookies()).get("token")?.value;
     let decodedData = null;
 
     if (accessToken) {
@@ -64,8 +59,24 @@ export const getCurrentUser = async () => {
 
 export const logoutUser = async () => {
     try {
-        (await cookies()).delete('accessToken');
+        (await cookies()).delete('token');
     } catch (err: any) {
         return Error(err);
+    }
+};
+
+export const getMe = async () => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/me`,
+            {
+                credentials: "include",
+                cache: "no-store",
+            }
+        );
+
+        return await res.json();
+    } catch (error) {
+        console.log(error);
     }
 };
