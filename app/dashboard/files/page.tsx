@@ -16,7 +16,6 @@ interface FileModel {
 }
 
 export default function FilesPage() {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
     // 2. Updated sample data to reflect your real model properties
@@ -53,57 +52,10 @@ export default function FilesPage() {
 
     return (
         <div className="min-h-screen bg-[#0a0a0f] flex text-white antialiased">
-            {/* Mobile Sidebar Overlay Backdrop */}
-            {sidebarOpen && (
-                <div
-                    className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm min-[861px]:hidden"
-                    onClick={() => setSidebarOpen(false)}
-                />
-            )}
-
-            {/* ─── SIDEBAR NAVIGATION ────────────────────────────────────── */}
-            <aside className={`fixed top-0 bottom-0 left-0 z-50 w-60 shrink-0 border-r border-white/[0.06] bg-white/[0.015] backdrop-blur-xl flex flex-col py-6 transition-transform duration-300 ease-in-out min-[861px]:translate-x-0 min-[861px]:z-10 ${sidebarOpen ? "translate-x-0 shadow-[4px_0_30px_rgba(0,0,0,0.6)]" : "-translate-x-full"
-                }`}>
-                <Link href="/" className="flex items-center gap-2.5 px-6 pb-6 border-b border-white/[0.06] no-underline">
-                    <div className="w-8 h-8 bg-gradient-to-br from-[#6366f1] to-[#10b981] rounded-lg flex items-center justify-center">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff">
-                            <path d="M20 6h-3V4c0-1.1-.9-2-2-2H9c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM9 4h6v2H9V4zm11 15H4V8h16v11z" />
-                            <path d="M13 10h-2v3H8l4 4 4-4h-3z" />
-                        </svg>
-                    </div>
-                    <span className="text-lg font-black text-white tracking-tight">cloud<span className="text-[#818cf8]">Vault</span></span>
-                </Link>
-
-                <nav className="pt-6 px-4 flex-1 space-y-1">
-                    <div className="font-mono text-[9px] font-bold tracking-[2px] uppercase text-white/20 px-3 mb-2">Menu</div>
-                    <Link href="/dashboard" className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] font-semibold text-white/40 hover:bg-white/[0.03] hover:text-white/80 transition-all no-underline">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" /></svg>
-                        Dashboard
-                    </Link>
-                    <Link href="/dashboard/upload" className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] font-semibold text-white/40 hover:bg-white/[0.03] hover:text-white/80 transition-all no-underline">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" /></svg>
-                        Upload Area
-                    </Link>
-                    <Link href="#" className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[13px] font-semibold bg-indigo-500/10 text-[#818cf8] border border-indigo-500/10 no-underline shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z" /></svg>
-                        My Files
-                    </Link>
-                </nav>
-            </aside>
 
             {/* ─── MAIN FRAME CONTENT ────────────────────────────────────── */}
-            <main className="flex-1 min-h-screen flex flex-col pl-60 max-[860px]:pl-0">
-                {/* Header Navbar */}
-                <header className="h-16 border-b border-white/[0.05] flex items-center px-8 max-[860px]:px-5 gap-4 bg-[#0a0a0f]/70 backdrop-blur-md sticky top-0 z-30">
-                    <button className="hidden max-[860px]:flex bg-transparent border-0 text-white/60 p-1 cursor-pointer" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Toggle Menu">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
-                    </button>
-                    <div className="text-[15px] font-extrabold tracking-tight flex-1 flex items-center gap-2">
-                        Object Store
-                        <span className="text-white/20 font-normal text-xs font-mono">/ Inventory Bucket</span>
-                    </div>
-                </header>
-
+            <main className="flex-1 min-h-screen flex flex-col max-[860px]:pl-0">
+                
                 {/* Main Space Container */}
                 <div className="p-8 max-[600px]:p-5 flex-1 max-w-6xl w-full mx-auto space-y-6">
                     {/* Top Row Context Title Block */}
