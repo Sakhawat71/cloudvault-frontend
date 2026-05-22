@@ -57,24 +57,47 @@ export const getCurrentUser = async () => {
 };
 
 
+// export const logoutUser = async () => {
+//     try {
+//         (await cookies()).delete('token');
+//     } catch (err: any) {
+//         return Error(err);
+//     }
+// };
+
 export const logoutUser = async () => {
     try {
-        (await cookies()).delete('token');
-    } catch (err: any) {
-        return Error(err);
+        (await cookies()).delete("token");
+        return {
+            success: true,
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error,
+        };
     }
 };
 
 export const getMe = async () => {
     try {
+        const token = (await cookies()).get("token")?.value;
+        const headers: Record<string, string> = {
+            "Content-Type": "application/json",
+        };
+        if (token) {
+            headers["Authorization"] = `Bearer ${token}`;
+        }
+
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/me`,
             {
                 credentials: "include",
                 cache: "no-store",
+                method: "GET",
+                headers,
             }
         );
-
         return await res.json();
     } catch (error) {
         console.log(error);

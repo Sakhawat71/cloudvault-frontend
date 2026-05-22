@@ -34,6 +34,7 @@ export default function LoginPage() {
             });
 
             router.push("/dashboard");
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             toast.error(
                 error?.message || "Something went wrong",
@@ -45,7 +46,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="relative min-h-screen overflow-hidden bg-[#0a0a0f] text-white">
+        <div className="relative min-h-screen bg-[#0a0a0f] text-white">
             {/* Background blur */}
             <div className="absolute -left-32 top-0 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
             <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />

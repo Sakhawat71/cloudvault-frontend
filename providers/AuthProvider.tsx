@@ -9,7 +9,6 @@ import {
 } from "react";
 
 
-
 type User = {
     id: string;
     name: string;
@@ -36,7 +35,7 @@ export const AuthProvider = ({
         const loadUser = async () => {
             try {
                 const res = await getMe();
-
+                // console.log(res);
                 if (res?.success) {
                     setUser(res.user);
                 }

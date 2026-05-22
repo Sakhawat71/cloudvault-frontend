@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-// import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { loginUser, registerUser } from "@/services/auth";
@@ -75,7 +74,6 @@ export default function RegisterPage() {
             });
 
             if (result.success === false) {
-                // throw new Error("Invalid credentials");
                 toast.error(result.message || "Login failed");
             }
             if (result.success) {
