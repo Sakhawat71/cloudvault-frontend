@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import Sidebar from "@/components/Sidebar";
 
 
-
-
 // Page title map
 const PAGE_TITLES: Record<string, { title: string; sub: string }> = {
     "/dashboard": { title: "Dashboard", sub: "Overview" },
@@ -68,22 +66,3 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
     );
 }
-
-
-
-
-
-// import type { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//     title: "Dashboard - CloudVault",
-//     description: "CloudVault secure file storage and management",
-// };
-
-// export default function DashboardLayout({
-//     children,
-// }: {
-//     children: React.ReactNode;
-// }) {
-//     return children;
-// }
